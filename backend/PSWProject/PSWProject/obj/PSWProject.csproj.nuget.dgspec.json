@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ivana\\Desktop\\Nova fascikla\\PSWProject\\PSWProject\\PSWProject.csproj": {}
+    "C:\\Users\\Ivana\\Desktop\\PSW projekat\\PSW-projekat\\backend\\PSWProject\\PSWProject\\PSWProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ivana\\Desktop\\Nova fascikla\\PSWProject\\PSWProject\\PSWProject.csproj": {
+    "C:\\Users\\Ivana\\Desktop\\PSW projekat\\PSW-projekat\\backend\\PSWProject\\PSWProject\\PSWProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ivana\\Desktop\\Nova fascikla\\PSWProject\\PSWProject\\PSWProject.csproj",
+        "projectUniqueName": "C:\\Users\\Ivana\\Desktop\\PSW projekat\\PSW-projekat\\backend\\PSWProject\\PSWProject\\PSWProject.csproj",
         "projectName": "PSWProject",
-        "projectPath": "C:\\Users\\Ivana\\Desktop\\Nova fascikla\\PSWProject\\PSWProject\\PSWProject.csproj",
+        "projectPath": "C:\\Users\\Ivana\\Desktop\\PSW projekat\\PSW-projekat\\backend\\PSWProject\\PSWProject\\PSWProject.csproj",
         "packagesPath": "C:\\Users\\Ivana\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ivana\\Desktop\\Nova fascikla\\PSWProject\\PSWProject\\obj\\",
+        "outputPath": "C:\\Users\\Ivana\\Desktop\\PSW projekat\\PSW-projekat\\backend\\PSWProject\\PSWProject\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ivana\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +39,12 @@
       "frameworks": {
         "net5.0-windows7.0": {
           "targetAlias": "net5.0-windows",
+          "dependencies": {
+            "Npgsql": {
+              "target": "Package",
+              "version": "[6.0.4, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

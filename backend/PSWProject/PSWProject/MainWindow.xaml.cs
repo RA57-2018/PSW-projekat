@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Npgsql;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,26 @@ namespace PSWProject
         public MainWindow()
         {
             InitializeComponent();
+            TestConnection();
+            Console.Read();
+        }
+
+        private static void TestConnection()
+        {
+            using (NpgsqlConnection con = GetConnection())
+            {
+                con.Open();
+                if (con.State == System.Data.ConnectionState.Open) 
+                {
+                    Console.WriteLine("Connected");
+                }
+            }
+                
+        }
+
+        private static NpgsqlConnection GetConnection()
+        {
+            return new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=psql;Database=psw");
         }
     }
 }
