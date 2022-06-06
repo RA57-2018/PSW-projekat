@@ -12,11 +12,10 @@ namespace PswProject.dto
         private String surname;
         private String username;
         private String password;
-        private String repeatPassword;
         private String phone;
         private String jmbg;
         private String address;
-        private Gender gender;
+        private String gender;
 
         public RegistrationDTO() { }
 
@@ -44,6 +43,6 @@ namespace PswProject.dto
         public String Phone { get => phone; set => phone = value; }
         public String Jmbg { get => jmbg; set => jmbg = value; }
         public String Address { get => address; set => address = value; }
-        public Gender Gender { get => gender; set => gender = value; }
+        public String Gender { get => gender; set => gender = value; }
     }
 }

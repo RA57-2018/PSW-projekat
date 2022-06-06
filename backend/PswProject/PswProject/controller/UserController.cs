@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using PswProject.dto;
 using PswProject.service;
 using System;
@@ -8,29 +9,34 @@ using System.Threading.Tasks;
 
 namespace PswProject.controller
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
-        public IUserService userService;
+        public UserService userService;
 
-        public UserController(IUserService userService) 
+        public UserController() 
         {
-            this.userService = userService;
+            userService = new UserService();
         }
 
-        public Boolean registration(RegistrationDTO registrationDTO)
+        //[HttpPost]
+        [HttpPost("/registration")]
+        // [EnableCors("AllowOrigin")]
+        public IActionResult registration([FromBody] RegistrationDTO registrationDTO)
         {
+            Console.WriteLine("1234");
             try
             {
                 if (userService.registration(registrationDTO))
+                {
                     Console.WriteLine("Registration successfull");
-                return true;
+                }
             }
             catch (Exception e) {
                 Console.WriteLine("Error");
             }
-            return false;
+            return Ok(true);
         }
     }
 }

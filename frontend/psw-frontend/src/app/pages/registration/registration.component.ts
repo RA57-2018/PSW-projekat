@@ -21,16 +21,14 @@ export class RegistrationComponent implements OnInit {
   password : string = "";
   checkPassword : string = "";
   phone : string = "";
-  jmbg : string = "";
   address : string = "";
+  jmbg : string = "";
   selectedValueGender = "Male";
-
   hide: boolean = true;
-  hideRp: boolean = true; 
+  hideRp: boolean = true;
 
-  constructor(private fb: FormBuilder, private router: Router, private  userService: UserService) { }
+  constructor(private fb: FormBuilder,private userService : UserService, private router: Router) { }
 
-  //validacija za polja ako su prazna
   ngOnInit(): void {
     this.validateForm = this.fb.group({
       username: [null,[Validators.required]],
@@ -39,8 +37,8 @@ export class RegistrationComponent implements OnInit {
       password: [null, [Validators.required]],
       checkPassword: [null, [Validators.required, this.confirmationValidator]],
       phone: [null, [Validators.required]],
-      jmbg: [null, [Validators.required]],
-      address: [null, [Validators.required]]
+      address: [null, [Validators.required]],
+      jmbg: [null, [Validators.required]]
     });
   }
 
@@ -55,7 +53,7 @@ export class RegistrationComponent implements OnInit {
 
   genders: Gender[] = [
     {value: 'Male'},
-    {value: 'Female'},
+    {value: 'Female'}
   ];
 
   submitForm(): void {
@@ -69,28 +67,30 @@ export class RegistrationComponent implements OnInit {
     this.surname = this.validateForm.value.surname;
     this.password = this.validateForm.value.password;
     this.phone = this.validateForm.value.phone;
-    this.checkPassword = this.validateForm.value.checkPassword;
-    this.jmbg = this.validateForm.value.jmbg;
     this.address = this.validateForm.value.address;
+    this.jmbg = this.validateForm.value.jmbg;
 
-    const body = {
-      username: this.username,
-      name: this.name,
-      surname: this.surname,
-      password : this.password,
-      repeatPassword: this.checkPassword,
-      phone : this.phone,
-      gender: this.selectedValueGender,   
+      const body = {
+        name: this.name,
+        surname: this.surname,
+        username: this.username,
+        password : this.password,
+        phone : this.phone,
+        jmbg : this.jmbg,
+        address : this.address,
+        gender: this.selectedValueGender
+      }
+
+      if(this.validateForm.valid){
+        this.userService.registration(body).subscribe(data => { 
+            alert("Registration successfull");
+           // this.router.navigate(['login']);
+        }, error => {
+          console.log(error.status);
+          if(error.status == 409){
+            alert("Username already exists");
+          }
+        });
+      }
     }
-/*
-    if(this.validateForm.valid){
-      this.userService.registration(body).subscribe(data => { 
-          alert("Registration successful");
-          this.router.navigate(['login']);
-      }, error => {
-        console.log(error.status);
-        alert("Registration unsuccessful");
-      });
-    }*/
-  }
 }
