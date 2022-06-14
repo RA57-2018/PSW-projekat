@@ -13,6 +13,7 @@ namespace PswProject.service
     public class UserService
     {
         private UserRepository userRepository { get; set; }
+        private UserSqlRepository userSqlRepositorys { get; set; }
 
         public UserService() { }
 
@@ -21,15 +22,19 @@ namespace PswProject.service
             this.userRepository = userRepository;
         }
 
+        public UserService(UserSqlRepository userSqlRepository)
+        {
+            userSqlRepositorys = userSqlRepository;
+        }
+
         public Boolean registration(RegistrationDTO registrationDTO) 
         {
             User user = new User(registrationDTO);
-
-            user.setRole(Role.PATIENT);
-            Console.WriteLine(user);
-           // userRepository.save(user);
+            user.Role = Role.PATIENT;
+            userSqlRepositorys.Add(user);
 
             return true;
 	    }
+
     }
 }

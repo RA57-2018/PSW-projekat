@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using PswProject.dto;
+using PswProject.model;
+using PswProject.repository;
 using PswProject.service;
 using System;
 using System.Collections.Generic;
@@ -14,18 +16,18 @@ namespace PswProject.controller
     public class UserController : ControllerBase
     {
         public UserService userService;
+        private readonly MyDbContext dbContext;
 
-        public UserController() 
+        public UserController(MyDbContext context) 
         {
-            userService = new UserService();
+            dbContext = context;
+            userService = new UserService(new UserSqlRepository(context));
         }
 
         //[HttpPost]
         [HttpPost("/registration")]
-        // [EnableCors("AllowOrigin")]
-        public IActionResult registration([FromBody] RegistrationDTO registrationDTO)
+        public IActionResult Post(RegistrationDTO registrationDTO)
         {
-            Console.WriteLine("1234");
             try
             {
                 if (userService.registration(registrationDTO))
@@ -37,6 +39,12 @@ namespace PswProject.controller
                 Console.WriteLine("Error");
             }
             return Ok(true);
+
+            /*User user = GenerateUserFromDTO(registrationDTO);
+            UserSqlRepository.Add(user, dbContext);
+            Console.WriteLine(user);
+            return Ok();*/
         }
+
     }
 }

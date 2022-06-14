@@ -44,9 +44,21 @@
               "target": "Package",
               "version": "[2.2.0, )"
             },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Proxies": {
+              "target": "Package",
+              "version": "[3.1.5, )"
+            },
             "Microsoft.Graph": {
               "target": "Package",
               "version": "[4.29.0, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[3.1.4, )"
             },
             "System.DirectoryServices.AccountManagement": {
               "target": "Package",

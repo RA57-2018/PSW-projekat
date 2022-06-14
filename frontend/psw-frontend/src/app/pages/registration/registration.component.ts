@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/user.service';
+import { RegistrationDTO } from './registration.dto';
 
 interface Gender {
   value: string;
@@ -25,7 +26,8 @@ export class RegistrationComponent implements OnInit {
   jmbg : string = "";
   selectedValueGender = "Male";
   hide: boolean = true;
-  hideRp: boolean = true;
+  role: string = "";
+  public register: RegistrationDTO = new RegistrationDTO();
 
   constructor(private fb: FormBuilder,private userService : UserService, private router: Router) { }
 
@@ -35,7 +37,6 @@ export class RegistrationComponent implements OnInit {
       name: [null, [Validators.required]],
       surname: [null, [Validators.required]],
       password: [null, [Validators.required]],
-      checkPassword: [null, [Validators.required, this.confirmationValidator]],
       phone: [null, [Validators.required]],
       address: [null, [Validators.required]],
       jmbg: [null, [Validators.required]]
@@ -62,27 +63,17 @@ export class RegistrationComponent implements OnInit {
       this.validateForm.controls[i].updateValueAndValidity();
     }
 
-    this.username = this.validateForm.value.username;
-    this.name = this.validateForm.value.name;
-    this.surname = this.validateForm.value.surname;
-    this.password = this.validateForm.value.password;
-    this.phone = this.validateForm.value.phone;
-    this.address = this.validateForm.value.address;
-    this.jmbg = this.validateForm.value.jmbg;
-
-      const body = {
-        name: this.name,
-        surname: this.surname,
-        username: this.username,
-        password : this.password,
-        phone : this.phone,
-        jmbg : this.jmbg,
-        address : this.address,
-        gender: this.selectedValueGender
-      }
-
+    this.register.Name = this.validateForm.value.name;
+    this.register.Surname = this.validateForm.value.surname;
+    this.register.Username = this.validateForm.value.username;
+    this.register.Password = this.validateForm.value.password;
+    this.register.Phone = this.validateForm.value.phone;
+    this.register.Jmbg = this.validateForm.value.jmbg;
+    this.register.Address = this.validateForm.value.address;
+    this.register.Gender = this.selectedValueGender;
+    console.log(this.register.Gender)
       if(this.validateForm.valid){
-        this.userService.registration(body).subscribe(data => { 
+        this.userService.registration(this.register).subscribe(data => { 
             alert("Registration successfull");
            // this.router.navigate(['login']);
         }, error => {
