@@ -23,7 +23,7 @@ namespace PswProject
             modelBuilder.Entity<User>(mb =>
             {
                 mb.HasData(
-                new User(1, "Marko", "Markovic", "miki98", "miki985@", "0641664608", "3009998805138", Role.ADMIN,
+                new User(1, "Marko", "Markovic", "miki98", "miki985@", "0641664608", "3009998805138", Role.PATIENT,
                 "Bulevar Oslobodjenja 8", Gender.MALE, false),
                 new User(2, "Milica", "Mikic", "mici97", "mici789@", "0652459871", "3009998805137", Role.PATIENT,
                 "Kisacka 5", Gender.FEMALE, false)

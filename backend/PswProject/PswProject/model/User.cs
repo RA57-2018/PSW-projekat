@@ -24,6 +24,23 @@ namespace PswProject.model
         public Gender Gender { get; set; }
         public Boolean Blocked { get; set; }
 
+        public User() { }
+
+        public User(String username, String password, User p)
+        {
+            Id = p.Id;
+            Name = p.Name;
+            Surname = p.Surname;
+            Username = username;
+            Password = password;
+            Phone = p.Phone;
+            Jmbg = p.Jmbg;
+            Role = p.Role;
+            Address = p.Address;
+            Gender = p.Gender;
+            Blocked = p.Blocked;
+        }
+
         public User(RegistrationDTO registrationDTO) 
         {
             Name = registrationDTO.Name;

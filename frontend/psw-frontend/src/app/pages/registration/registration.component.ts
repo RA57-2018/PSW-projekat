@@ -75,7 +75,7 @@ export class RegistrationComponent implements OnInit {
       if(this.validateForm.valid){
         this.userService.registration(this.register).subscribe(data => { 
             alert("Registration successfull");
-           // this.router.navigate(['login']);
+            this.router.navigate(['login']);
         }, error => {
           console.log(error.status);
           if(error.status == 409){

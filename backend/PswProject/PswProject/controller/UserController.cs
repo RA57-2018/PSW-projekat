@@ -39,11 +39,21 @@ namespace PswProject.controller
                 Console.WriteLine("Error");
             }
             return Ok(true);
+        }
 
-            /*User user = GenerateUserFromDTO(registrationDTO);
-            UserSqlRepository.Add(user, dbContext);
-            Console.WriteLine(user);
-            return Ok();*/
+        [HttpPost("/login")]
+        public IActionResult Login(UserDTO userDTO)
+        {
+            User user = userService.FindByUsernameAndPassword(userDTO.Username, userDTO.Password);
+            if (user != null)
+            {
+                String jwtToken = userService.GenerateJwtToken(user);
+                return Ok(jwtToken);
+            }
+            else
+            {
+                return Unauthorized();
+            }
         }
 
     }

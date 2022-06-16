@@ -30,6 +30,10 @@ namespace PswProject
            services.AddDbContext<MyDbContext>(options =>
                         options.UseNpgsql(GetDBConnectionString()).UseLazyLoadingProxies());
 
+            services.AddControllers().AddNewtonsoftJson(options =>
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
+
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
                 builder.AllowAnyOrigin()

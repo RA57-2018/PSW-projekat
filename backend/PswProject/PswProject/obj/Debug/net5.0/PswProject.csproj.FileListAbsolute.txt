@@ -82,3 +82,7 @@ C:\Users\Ivana\Desktop\PSW projekat\PSW-projekat\backend\PswProject\PswProject\b
 C:\Users\Ivana\Desktop\PSW projekat\PSW-projekat\backend\PswProject\PswProject\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\Ivana\Desktop\PSW projekat\PSW-projekat\backend\PswProject\PswProject\bin\Debug\net5.0\Npgsql.dll
 C:\Users\Ivana\Desktop\PSW projekat\PSW-projekat\backend\PswProject\PswProject\bin\Debug\net5.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\Ivana\Desktop\PSW projekat\PSW-projekat\backend\PswProject\PswProject\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\Ivana\Desktop\PSW projekat\PSW-projekat\backend\PswProject\PswProject\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\Ivana\Desktop\PSW projekat\PSW-projekat\backend\PswProject\PswProject\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\Ivana\Desktop\PSW projekat\PSW-projekat\backend\PswProject\PswProject\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll

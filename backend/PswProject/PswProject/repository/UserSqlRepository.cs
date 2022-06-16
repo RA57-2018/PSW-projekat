@@ -25,6 +25,26 @@ namespace PswProject.repository
             dbContext.SaveChanges();
         }
 
+        public User FindByUsernameAndPassword(String username, String password)
+        {
+            //User user = (from n in dbContext.Users where n.Username.Equals(username) select n).FirstOrDefault();
+            // Console.WriteLine((from n in dbContext.Users.Where(n => n.Username == username && n.Password == password) select n).FirstOrDefault());
+            Console.WriteLine("ovde");
+            User user = new User();
+
+            foreach (User users in dbContext.Users) 
+            {
+                Console.WriteLine(users.Username.Equals(username));
+                if (users.Username.Equals(username))
+                {
+                    user = new User(username, password, users);
+                    Console.WriteLine(user.Id);
+                }
+            }
+           
+            return user;
+        }
+
         public bool Delete(string id)
         {
             throw new NotImplementedException();

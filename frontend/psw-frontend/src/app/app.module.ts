@@ -16,13 +16,17 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './pages/login/login.component';
+import { PatientHomePageComponent } from './pages/patient-home-page/patient-home-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegistrationComponent,
     LandingPageComponent,
-    NavbarComponent
+    NavbarComponent,
+    LoginComponent,
+    PatientHomePageComponent
   ],
   imports: [
     BrowserModule,
