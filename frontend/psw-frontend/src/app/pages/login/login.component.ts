@@ -1,3 +1,4 @@
+//import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,9 +14,11 @@ import { UserDto } from './user.dto';
 export class LoginComponent implements OnInit {
 
   userDto: UserDto = { Username: "", Password: ""}
-  token: string = "";
+  public token: any;
   validateForm!: FormGroup;
   hide: boolean = true;
+  //role: string = "";
+  public decodedToken :any;
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private router: Router, private userService : UserService) { }
 
@@ -24,7 +27,8 @@ export class LoginComponent implements OnInit {
       username: [null, [Validators.required]],
       password: [null, [Validators.required]]
     });
-
+    //this.getToken();
+    //const token = this.route.snapshot.params['token'];
     
    /* const token = this.route.snapshot.params['token'];
     if (token != undefined) {
@@ -36,6 +40,8 @@ export class LoginComponent implements OnInit {
     }*/
   }
 
+
+
   submitForm(): void {
     for (const i in this.validateForm.controls) {
       this.validateForm.controls[i].markAsDirty();
@@ -45,44 +51,52 @@ export class LoginComponent implements OnInit {
     this.userDto.Username = this.validateForm.value.username;
     this.userDto.Password = this.validateForm.value.password;
     console.log(this.userDto.Username)
+    
+    /*this.userService.login(this.userDto).subscribe(data => {
+      const user = data;
+      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('token', JSON.stringify(user.token));
+      
+      sessionStorage.setItem('username', user.username);
+      let authString = 'Basic ' + btoa(user.username + ':' + user.password);
+      sessionStorage.setItem('basicauth', authString);
+      console.log(this.getDecodedAccessToken(data.token));
+      console.log(data.token);
+      if(this.getDecodedAccessToken(user.token)['Role'] === 'PATIENT'){
+        this.router.navigate(['patientHomePage']);
+      }
+      else if(this.getDecodedAccessToken(user.token).Role === 'ADMIN'){
+        this.router.navigate(['adminHomePage']);
+      }
+    }, error => {
+        alert(error);
+    })*/
 
     this.userService.login(this.userDto).subscribe((data: any)=>{
       localStorage.setItem("jwtToken", data);
       let tokenInfo = this.getDecodedAccessToken(data);
-      localStorage.setItem('id', tokenInfo.id);
-      localStorage.setItem('role', tokenInfo.role);
-      console.log(tokenInfo.role);
-      console.log(data);
-      this.router.navigate(['patientHomePage']);
+      if(tokenInfo !== null){
+        console.log(tokenInfo);
+        localStorage.setItem('Id', tokenInfo.Id);
+        localStorage.setItem('Role', tokenInfo.Role);
+        if(tokenInfo.Role === 'PATIENT'){
+           this.router.navigate(['patientHomePage']);
+        }
+      }
+      else {
+        this.router.navigate(['adminHomePage']);
+      }
     });
 
-   /* this.userService.login(this.userDto).subscribe(data => {
-      const user = data;
-      localStorage.setItem('user', JSON.stringify(user));
-      localStorage.setItem('token', JSON.stringify(user.token));
-      console.log(user.token)
-
-      sessionStorage.setItem('username', user.username);
-      let authString = 'Basic ' + btoa(user.username + ':' + user.password);
-      sessionStorage.setItem('basicauth', authString);
-
-      if(this.getDecodedAccessToken(data.token).role === 'PATIENT'){
-        console.log(this.getDecodedAccessToken(data.token).role)
-        this.router.navigate(['patientHomePage']);
-      }
-    }, error => {
-      alert("Error");
-    })*/
   }
 
   getDecodedAccessToken(token: string): any {
     try {
-      console.log(token)
       return jwt_decode(token);
     }
     catch (Error) {
-      token = "";
+      return null;
     }
   }
-
+  
 }

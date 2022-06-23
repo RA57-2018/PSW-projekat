@@ -48,6 +48,7 @@ namespace PswProject.controller
             if (user != null)
             {
                 String jwtToken = userService.GenerateJwtToken(user);
+                Console.WriteLine(jwtToken);
                 return Ok(jwtToken);
             }
             else
