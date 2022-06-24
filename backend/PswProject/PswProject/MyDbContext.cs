@@ -10,6 +10,8 @@ namespace PswProject
     public class MyDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Appointment> Appointments { get; set; }
+        public DbSet<Doctor> Doctors { get; set; }
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -30,6 +32,12 @@ namespace PswProject
                 );
 
             });
+
+            modelBuilder.Entity<Doctor>()
+                .HasData(
+                new Doctor(1, "Milan", "Popovic", Specialization.GENERAL),
+                new Doctor(2, "Milana", "Pilipovic", Specialization.CARDIOLOGIST)
+                );
 
 
         }
