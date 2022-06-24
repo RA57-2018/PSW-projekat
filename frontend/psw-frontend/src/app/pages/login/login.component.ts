@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit {
   public token: any;
   validateForm!: FormGroup;
   hide: boolean = true;
-  //role: string = "";
   public decodedToken :any;
 
   constructor(private route: ActivatedRoute, private fb: FormBuilder, private router: Router, private userService : UserService) { }
@@ -27,20 +26,7 @@ export class LoginComponent implements OnInit {
       username: [null, [Validators.required]],
       password: [null, [Validators.required]]
     });
-    //this.getToken();
-    //const token = this.route.snapshot.params['token'];
-    
-   /* const token = this.route.snapshot.params['token'];
-    if (token != undefined) {
-      this.rrService.confirmRegistrationRequest(token).subscribe(() => {
-        this.router.navigateByUrl(`/login`);
-      },
-        error => {
-        });
-    }*/
   }
-
-
 
   submitForm(): void {
     for (const i in this.validateForm.controls) {
@@ -50,37 +36,17 @@ export class LoginComponent implements OnInit {
 
     this.userDto.Username = this.validateForm.value.username;
     this.userDto.Password = this.validateForm.value.password;
-    console.log(this.userDto.Username)
+    console.log(this.userDto.Username);
     
-    /*this.userService.login(this.userDto).subscribe(data => {
-      const user = data;
-      localStorage.setItem('user', JSON.stringify(user));
-      localStorage.setItem('token', JSON.stringify(user.token));
-      
-      sessionStorage.setItem('username', user.username);
-      let authString = 'Basic ' + btoa(user.username + ':' + user.password);
-      sessionStorage.setItem('basicauth', authString);
-      console.log(this.getDecodedAccessToken(data.token));
-      console.log(data.token);
-      if(this.getDecodedAccessToken(user.token)['Role'] === 'PATIENT'){
-        this.router.navigate(['patientHomePage']);
-      }
-      else if(this.getDecodedAccessToken(user.token).Role === 'ADMIN'){
-        this.router.navigate(['adminHomePage']);
-      }
-    }, error => {
-        alert(error);
-    })*/
-
     this.userService.login(this.userDto).subscribe((data: any)=>{
       localStorage.setItem("jwtToken", data);
       let tokenInfo = this.getDecodedAccessToken(data);
-      if(tokenInfo !== null){
+      if(tokenInfo != null){
         console.log(tokenInfo);
         localStorage.setItem('Id', tokenInfo.Id);
         localStorage.setItem('Role', tokenInfo.Role);
-        if(tokenInfo.Role === 'PATIENT'){
-           this.router.navigate(['patientHomePage']);
+        if(tokenInfo.Role == 'PATIENT'){
+          this.router.navigate(['patientHomePage']);
         }
       }
       else {

@@ -18,19 +18,10 @@ export class AdminHomePageComponent implements OnInit {
     this.getToken();
   }
   private getToken(): void {
-    this.token = JSON.parse(localStorage.getItem('token') || '{}');
-    this.decodedToken = this.getDecodedAccessToken(this.token);
-    if (this.decodedToken === null) {
-      this.router.navigate(['adminHomePage']);
+    if (this.decodedToken !== null) {
+      alert("Ne mozete da pristupite ovoj stranici!");
+      this.router.navigate(['patientHomePage']);
     }
   }
   
-  getDecodedAccessToken(token: string): any {
-    try {
-      return jwt_decode(token);
-    }
-    catch (Error) {
-      return null;
-    }
-  }
 }
