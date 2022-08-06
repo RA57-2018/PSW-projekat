@@ -24,6 +24,7 @@ namespace PswProject.controller
             userService = new UserService(new UserSqlRepository(context));
         }
 
+        //[HttpPost]
         [HttpPost("/registration")]
         public IActionResult Post(RegistrationDTO registrationDTO)
         {

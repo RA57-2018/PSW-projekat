@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,9 +9,11 @@ namespace PswProject.model
 {
     public class Doctor
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdD { get; set; }
-        public String Name { get; set; }
-        public String Surname { get; set; }
+        public String NameAndSurname { get; set; }
+        
         public Specialization Specialization { get; set; }
 
         public Doctor() { }
@@ -17,8 +21,7 @@ namespace PswProject.model
         public Doctor(int id, string name, string surname, Specialization specialization)
         {
             this.IdD = id;
-            this.Name = name;
-            this.Surname = surname;
+            this.NameAndSurname = name;
             this.Specialization = specialization;
         }
     }

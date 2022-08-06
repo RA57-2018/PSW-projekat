@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-admin-home-page',
@@ -8,11 +7,10 @@ import jwt_decode from 'jwt-decode';
   styleUrls: ['./admin-home-page.component.css']
 })
 export class AdminHomePageComponent implements OnInit {
-  
   public token: any;
   public decodedToken: any;
 
-  constructor(private route: ActivatedRoute, private router: Router) {} 
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
     this.getToken();
@@ -23,5 +21,5 @@ export class AdminHomePageComponent implements OnInit {
       this.router.navigate(['patientHomePage']);
     }
   }
-  
+
 }

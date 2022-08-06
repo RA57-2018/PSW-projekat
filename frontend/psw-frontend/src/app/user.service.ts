@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UserDto } from './pages/login/user.dto';
-import jwt_decode from 'jwt-decode';
 
 const url = 'http://localhost:5000';
 
@@ -24,6 +23,7 @@ export class UserService {
   }
 
   public login(userDto: UserDto) : Observable<any>{ 
+    console.log(userDto)
     return this.http.post<any>(url + `/login`, userDto, { responseType: 'text' as 'json'});
   }
 
@@ -46,5 +46,8 @@ public getDataFromToken() : any
       return null;
     }
   }
+}
+function jwt_decode(token: string): any {
+  throw new Error('Function not implemented.');
 }
 

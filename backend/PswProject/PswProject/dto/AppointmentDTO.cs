@@ -10,7 +10,7 @@ namespace PswProject.dto
         public String StartTime { get; set; }
         public String PatientId { get; set; }
         public String DoctorId { get; set; }
-        
-        public AppointmentDTO() {}
+
+        public AppointmentDTO() { }
     }
 }

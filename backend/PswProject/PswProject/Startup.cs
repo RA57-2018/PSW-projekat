@@ -68,7 +68,7 @@ namespace PswProject
             var server = Configuration["DBServer"] ?? "localhost";
             var port = Configuration["DBPort"] ?? "5432";
             var user = Configuration["DBUser"] ?? "postgres";
-            var password = Configuration["DBPassword"] ?? "psql";
+            var password = Configuration["DBPassword"] ?? "lp0m3217";
             var database = Configuration["DB"] ?? "psw";
 
             if (server == null) return ConfigurationExtensions.GetConnectionString(Configuration, "MyDbContextConnectionString");
