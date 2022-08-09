@@ -16,12 +16,14 @@ namespace PswProject.controller
     public class UserController : ControllerBase
     {
         public UserService userService;
+        public DoctorService doctorService;
         private readonly MyDbContext dbContext;
 
         public UserController(MyDbContext context) 
         {
             dbContext = context;
             userService = new UserService(new UserSqlRepository(context));
+            doctorService = new DoctorService(new DoctorSqlRepository(context));
         }
 
         [HttpPost("/registration")]
@@ -44,6 +46,8 @@ namespace PswProject.controller
         public IActionResult Login(UserDTO userDTO)
         {
             User user = userService.FindByUsernameAndPassword(userDTO.Username, userDTO.Password);
+           // Doctor doctor = doctorService.FindDoctorsByUsernameAndPassword(userDTO.Username, userDTO.Password);
+
             foreach (User u in dbContext.Users)
             {
                 if (userDTO.Password == u.Password)

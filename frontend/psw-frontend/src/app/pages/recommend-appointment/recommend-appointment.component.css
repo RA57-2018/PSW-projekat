@@ -4,6 +4,9 @@ body {
     min-height: 100vh;
     background: #e2e2e2;
   }
+  .hidden {
+    visibility: hidden;
+  }
     
   .app-header {
     justify-content: space-between;

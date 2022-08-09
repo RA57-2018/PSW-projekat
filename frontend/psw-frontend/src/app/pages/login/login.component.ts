@@ -45,7 +45,13 @@ export class LoginComponent implements OnInit {
       }
       console.log(tokenInfo.Role);
       console.log(data);
-      this.router.navigate(['/observeAppointments']);
+      if(localStorage.getItem('Role') === 'PATIENT'){
+        this.router.navigate(['/observeAppointments']);
+      }
+      else
+      {
+        this.router.navigate(['/landingPage']);
+      }
     });
 
   

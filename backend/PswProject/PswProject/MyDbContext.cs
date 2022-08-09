@@ -40,8 +40,8 @@ namespace PswProject
             modelBuilder.Entity<Doctor>(mb =>
             {
                 mb.HasData(
-                new Doctor(1, "Milan", "Popovic", Specialization.GENERAL),
-                new Doctor(2, "Milana", "Pilipovic", Specialization.CARDIOLOGIST)
+                new Doctor(1, "Milan Popovic", 0),
+                new Doctor(2, "Milana Pilipovic", 2)
                 );
 
             });
