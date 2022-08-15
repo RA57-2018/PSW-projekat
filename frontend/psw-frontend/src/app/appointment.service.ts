@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -18,6 +18,8 @@ export class AppointmentObserveService {
   }
 
   CancelAppointment(id: number): any {
+    // const headerOptions = new HttpHeaders();
+    // headerOptions.set('Content-Type', 'application/json');
     return this.http.post<any>(url + '/cancelAppointments', id);
   }
 }

@@ -21,7 +21,7 @@ export interface RecommendedAppointment{
   endDate: Date;
   doctorId: number;
   specialization: number;
-  priority: number;
+  reason: string;
 }
 
 @Component({
@@ -43,7 +43,7 @@ export class SpecialistAppointmentComponent implements OnInit {
   patientId: number = 0;
   id: any = "";
 
-  appointment: RecommendedAppointment = {startDate: new Date(), endDate: new Date(), doctorId: 0, specialization: 0, priority: 1};
+  appointment: RecommendedAppointment = {startDate: new Date(), endDate: new Date(), doctorId: 0, specialization: 0, reason: ''};
   public returnAppointment: RecommendAppointmentDto;
 
   displayedColumns: string[] = ['position', 'Date', 'Time', 'Doctor', '#'];
@@ -67,7 +67,7 @@ export class SpecialistAppointmentComponent implements OnInit {
       endDate: ['', Validators.required],
       patient: ['', Validators.required],
       doctor: ['', Validators.required],
-      priority: ['', Validators.required]
+      reason: ['', Validators.required]
     });
 
     this.recommendAppointmentService.GetAllPatients().subscribe((data: any)=>{
@@ -107,7 +107,6 @@ export class SpecialistAppointmentComponent implements OnInit {
   }
 
   PrepareDTO(){
-    this.returnAppointment.Priority = this.appointment.priority;
 
     const format = "MM/dd/yyyy HH:mm:ss a"
 
