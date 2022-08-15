@@ -101,5 +101,10 @@ namespace PswProject.service
             var token = tokenHandler.CreateToken(tokenDeskriptor);
             return tokenHandler.WriteToken(token);
         }
+
+        public List<User> GetAllPatients()
+        {
+            return userSqlRepositorys.GetAll();
+        }
     }
 }

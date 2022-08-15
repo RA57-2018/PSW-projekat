@@ -1,12 +1,16 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators} from '@angular/forms';
-import { RecommendAppointmentService } from 'src/app/recommend-appointment.service';
-import { RecommendAppointmentDto } from './recommend-appointment-dto';
-import { DatePipe, formatDate } from '@angular/common';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AvailableRecommendedAppointments } from './available-recommended-appointments';
 import { Router } from '@angular/router';
+import { RecommendAppointmentService } from 'src/app/recommend-appointment.service';
+import { AvailableRecommendedAppointments } from '../recommend-appointment/available-recommended-appointments';
+import { RecommendAppointmentDto } from '../recommend-appointment/recommend-appointment-dto';
 
+export interface SelectedPatient{
+  name: string;
+  surname: string;
+}
 
 export interface SelectedDoctor{
   name: string;
@@ -21,25 +25,26 @@ export interface RecommendedAppointment{
 }
 
 @Component({
-  selector: 'app-recommend-appointment',
-  templateUrl: './recommend-appointment.component.html',
-  styleUrls: ['./recommend-appointment.component.css']
+  selector: 'app-specialist-appointment',
+  templateUrl: './specialist-appointment.component.html',
+  styleUrls: ['./specialist-appointment.component.css']
 })
-export class RecommendAppointmentComponent implements OnInit {
-
+export class SpecialistAppointmentComponent implements OnInit {
   doctors: any[]=[];
+  patients: any[]=[];
+  selectedPatient: SelectedPatient = {name: "", surname: ""};
   selectedDoctor: SelectedDoctor = {name: ""};
   recommendForm: FormGroup;
   appointmentsRecomended: AvailableRecommendedAppointments[] = new Array();
   start: Date = new Date;
   doctorName: string = "";
+  patientName: string = "";
   doctorId: number = 0;
+  patientId: number = 0;
   id: any = "";
-  IdA: number = 0;
 
-  appointment: RecommendedAppointment = {startDate: new Date(),endDate: new Date(), doctorId: 0, specialization: 0, priority: 1};
+  appointment: RecommendedAppointment = {startDate: new Date(), endDate: new Date(), doctorId: 0, specialization: 0, priority: 1};
   public returnAppointment: RecommendAppointmentDto;
-
 
   displayedColumns: string[] = ['position', 'Date', 'Time', 'Doctor', '#'];
 
@@ -57,13 +62,20 @@ export class RecommendAppointmentComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.recommendForm = this.formBuilder.group({
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
+      patient: ['', Validators.required],
       doctor: ['', Validators.required],
       priority: ['', Validators.required]
     });
+
+    this.recommendAppointmentService.GetAllPatients().subscribe((data: any)=>{
+      console.log(data);
+      for(const p of (data as any)){
+        this.patients.push(p);      
+      }
+    })
 
     this.recommendAppointmentService.GetAllDoctors().subscribe((data: any)=>{
       console.log(data);
@@ -72,9 +84,16 @@ export class RecommendAppointmentComponent implements OnInit {
       }
     })
   }
-//if u 80 redu izbaciti i naterati ga da kada je prioritet na vremenu prikaye sve termine svih doktora
+
   onSubmit(){
     this.PrepareDTO();
+    for(const p of this.patients){
+      if(p.name == this.selectedPatient.name){
+        this.patientName = p.name + p.surname;
+        this.patientId = p.id;
+      }
+     }
+
      for(const d of this.doctors){
        if(d.nameAndSurname == this.selectedDoctor.name){
          this.returnAppointment.DoctorId = d.idD;
@@ -85,8 +104,6 @@ export class RecommendAppointmentComponent implements OnInit {
       this.appointmentsRecomended = data;
       this.DoctorsNames();
     });
-
-   
   }
 
   PrepareDTO(){
@@ -112,7 +129,7 @@ export class RecommendAppointmentComponent implements OnInit {
   schedule(element: { start: Date; doctorFullName: string; }) {
     this.start = element.start;
     this.doctorName = element.doctorFullName;
-    this.id = localStorage.getItem('Id');
+    this.id = this.patientId;
     for(const d of this.doctors){
       if(d.nameAndSurname == this.doctorName){
         this.doctorId = d.idD;

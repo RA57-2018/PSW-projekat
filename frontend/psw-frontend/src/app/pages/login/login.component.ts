@@ -47,6 +47,8 @@ export class LoginComponent implements OnInit {
       console.log(data);
       if(localStorage.getItem('Role') === 'PATIENT'){
         this.router.navigate(['/observeAppointments']);
+      }else if(localStorage.getItem('Role') === 'DOCTOR'){
+        this.router.navigate(['/specialistAppointment']);
       }
       else
       {

@@ -7,6 +7,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { PatientHomePageComponent } from './pages/patient-home-page/patient-home-page.component';
 import { RecommendAppointmentComponent } from './pages/recommend-appointment/recommend-appointment.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
+import { SpecialistAppointmentComponent } from './pages/specialist-appointment/specialist-appointment.component';
 
 const routes: Routes = [
   { path: '', pathMatch:'full', redirectTo:'landingPage'},
@@ -19,9 +20,8 @@ const routes: Routes = [
   { path: 'login/:token', component: LoginComponent},
   { path: 'recommendedAppointment', component: RecommendAppointmentComponent},
   { path: 'observeAppointments/:token', component: AppointmentObserveComponent},
-  { path: 'observeAppointments', component: AppointmentObserveComponent}
-
-
+  { path: 'observeAppointments', component: AppointmentObserveComponent},
+  { path: 'specialistAppointment', component: SpecialistAppointmentComponent}
 ];
 
 @NgModule({
