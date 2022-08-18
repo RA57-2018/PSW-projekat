@@ -10,16 +10,16 @@ const url = 'http://localhost:5000';
 })
 export class AppointmentObserveService {
 
+  headers = { headers: new Headers({ 'Content-Type': 'application/json' })};
+
   constructor(private http: HttpClient) {}
   
   GetAppointments(id: number): Observable<any> {
     console.log(id);
-    return this.http.get<any>(url + '/observeAppointments/',{params:{id: id}});
+    return this.http.get<any>(url + "/observeAppointments/",{params:{id: id}});
   }
 
-  CancelAppointment(id: number): any {
-    // const headerOptions = new HttpHeaders();
-    // headerOptions.set('Content-Type', 'application/json');
-    return this.http.post<any>(url + '/cancelAppointments', id);
+  CancelAppointment(id: number): Observable<any> {
+    return this.http.post<any>(url + "/cancelAppointments", id);
   }
 }

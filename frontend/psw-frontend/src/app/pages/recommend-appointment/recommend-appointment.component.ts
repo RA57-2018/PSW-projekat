@@ -120,8 +120,6 @@ export class RecommendAppointmentComponent implements OnInit {
     }
    
     this.recommendAppointmentService.Schedule(this.start, this.doctorId, this.id).subscribe(data => {
-     console.log(this.id);
-     console.log(this.doctorId);
       alert("Zauzeli ste termin u " + this.start);
      this.router.navigate(['/observeAppointments/' + this.id]);
     });

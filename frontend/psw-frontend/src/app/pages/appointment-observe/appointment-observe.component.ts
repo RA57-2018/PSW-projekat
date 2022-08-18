@@ -15,7 +15,7 @@ export interface Appointment {
   
 })
 export class AppointmentObserveComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'start time', 'description', 'doctor', 'status','cancel'];
+  displayedColumns: string[] = ['id', 'start time', 'doctor', 'status','cancel'];
   dataSource = [];
   surveys: any[] = [];
   appointmentId: any;
@@ -34,10 +34,10 @@ export class AppointmentObserveComponent implements OnInit {
     this.router.navigate(navigationDetails);
   }
   
-  CancelAppointment(element: { id: number }){
-    this.appointmentId = element.id;
-    
-    this.observeAppointemntsService.CancelAppointment(element.id).subscribe((data: any) =>{
+  CancelAppointment(element: { idA: number }){
+    this.appointmentId = element.idA;
+
+    this.observeAppointemntsService.CancelAppointment(element.idA).subscribe((data: any) =>{
       this.ngOnInit();
       this._snackBar.open('Appointment cancelled!', '', {
         duration: 2000
@@ -52,6 +52,7 @@ export class AppointmentObserveComponent implements OnInit {
     console.log(this.id);
 
     this.observeAppointemntsService.GetAppointments(this.id).subscribe((data: any)=>{
+      console.log(data);
     this.dataSource = data;   
   });
   }

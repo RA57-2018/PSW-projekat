@@ -2,23 +2,17 @@
 
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef> No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-      
+      <td mat-cell *matCellDef="let element"> {{element.idA}} </td>
     </ng-container>
   
     <ng-container matColumnDef="start time">
       <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Start Time </th>
       <td mat-cell *matCellDef="let element"> {{element.startTime | date: 'short'}} </td>
     </ng-container>
-
-    <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Description </th>
-      <td mat-cell *matCellDef="let element"> {{element.apointmentDescription}} </td>
-    </ng-container>
   
     <ng-container matColumnDef="doctor">
       <th mat-header-cell *matHeaderCellDef style="text-align: center;"> Doctor </th>
-      <td mat-cell *matCellDef="let element"> {{element.doctorName}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.doctor.nameAndSurname}} </td>
     </ng-container>
 
     <ng-container matColumnDef="status">
