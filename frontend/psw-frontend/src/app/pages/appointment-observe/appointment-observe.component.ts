@@ -1,8 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AppointmentObserveService } from 'src/app/appointment.service';
-
 
 export interface Appointment {
   id: number;
@@ -42,8 +41,7 @@ export class AppointmentObserveComponent implements OnInit {
       this._snackBar.open('Appointment cancelled!', '', {
         duration: 2000
       });
-    });
-    
+    });  
   }
 
   ngOnInit(): void {

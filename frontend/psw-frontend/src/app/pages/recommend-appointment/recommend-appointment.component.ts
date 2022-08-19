@@ -7,7 +7,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AvailableRecommendedAppointments } from './available-recommended-appointments';
 import { Router } from '@angular/router';
 
-
 export interface SelectedDoctor{
   name: string;
 }
