@@ -14,7 +14,7 @@ export interface Appointment {
   
 })
 export class AppointmentObserveComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'start time', 'doctor', 'status','cancel'];
+  displayedColumns: string[] = ['id', 'start time', 'doctor', 'status','cancel', 'survey'];
   dataSource = [];
   surveys: any[] = [];
   appointmentId: any;

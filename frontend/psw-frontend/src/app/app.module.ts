@@ -28,6 +28,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { CommonModule } from '@angular/common';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { SpecialistAppointmentComponent } from './pages/specialist-appointment/specialist-appointment.component';
+import { SurveyComponent } from './pages/survey/survey.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { SpecialistAppointmentComponent } from './pages/specialist-appointment/s
     AppointmentObserveComponent,
     RecommendAppointmentComponent,
     SpecialistAppointmentComponent,
+    SurveyComponent,
   ],
     imports: [
     MatSnackBarModule,
