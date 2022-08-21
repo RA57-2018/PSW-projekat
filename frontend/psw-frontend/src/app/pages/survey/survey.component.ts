@@ -28,8 +28,6 @@ export class SurveyComponent implements OnInit {
     })
     this.id = localStorage.getItem('Id');
     this.ap = localStorage.getItem('idA');
-    //kako uzeti id appointmenta?
-    //this.ap = this.route.snapshot.paramMap.get('ap');//null je
   }
 
   onSubmit(){ 

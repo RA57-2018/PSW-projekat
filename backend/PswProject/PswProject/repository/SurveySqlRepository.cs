@@ -10,6 +10,8 @@ namespace PswProject.repository
         public MyDbContext dbContext { get; set; }
         private int idS { get; set; }
 
+        private int idAnswer = 0;
+
         public SurveySqlRepository(MyDbContext dbContext)
         {
             this.dbContext = dbContext;
@@ -65,17 +67,20 @@ namespace PswProject.repository
         {
             idS = GetAll().Count + 1;
             dbContext.Survey.Add(new Survey(idS, Int32.Parse(id), DateTime.Now, Int32.Parse(ap)));
-            Console.WriteLine((idS, Int32.Parse(id), DateTime.Now, Int32.Parse(ap)));
             dbContext.SaveChanges();
             ChangeAppointment(ap);
 
-            //var a = dbContext.Survey.Max(s => s.Id);
+            var a = dbContext.Survey.Max(s => s.Id);
+            Console.WriteLine(a);
 
-            //foreach (AnsweredQuestion answer in answeredQuestion)
-            //{
-            //    answer.SurveyId = a;
-            //    dbContext.AnsweredQuestion.Add(answer);
-            //}
+            foreach (AnsweredQuestion answer in answeredQuestion)
+            {
+                answer.Id = idAnswer + 1;
+                Console.WriteLine(answer);
+                answer.SurveyId = a;
+                dbContext.AnsweredQuestion.Add(answer);
+                idAnswer = idAnswer + 1;
+            }
 
             dbContext.SaveChanges();
         }
