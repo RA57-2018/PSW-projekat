@@ -12,6 +12,9 @@ namespace PswProject
         public DbSet<User> Users { get; set; }
         public DbSet<Appointment> Appointments { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
+        public DbSet<Survey> Survey { get; set; }
+        public DbSet<AnsweredQuestion> AnsweredQuestion { get; set; }
+        public DbSet<SurveyQuestion> SurveyQuestion { get; set; }
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -31,10 +34,6 @@ namespace PswProject
                 new User(2, "Milica", "Mikic", "mici97", "mici789@", "0652459871", "3009998805137", Role.PATIENT,
                 "Kisacka 5", Gender.FEMALE, false)
                 );
-
-                /*mb.OwnsOne(p => p.MedicalRecord).HasData(
-                  new { PatientId = 1, HealthInsuranceNumber = "1ab", CompanyName = "WellCare" },
-                  new { PatientId = 2, HealthInsuranceNumber = "2ab", CompanyName = "WellCare" });*/
             });
 
             modelBuilder.Entity<Doctor>(mb =>
@@ -53,6 +52,14 @@ namespace PswProject
                 new Appointment(2, new DateTime(2021, 12, 31, 16, 30, 00), 30, "", 1, 1, AppointmentStatus.UPCOMING, 124),
                 new Appointment(3, new DateTime(2021, 12, 07, 14, 30, 00), 30, "All good", 2, 2, AppointmentStatus.UPCOMING, 125),
                 new Appointment(4, new DateTime(2022, 01, 30, 14, 00, 00), 30, "All good", 1, 0, AppointmentStatus.UPCOMING, 126)
+                );
+            });
+
+            modelBuilder.Entity<SurveyQuestion>(mb =>
+            {
+                mb.HasData(
+                new SurveyQuestion(1, "How satisfied are you with the work of your doctor?", 0, 0),
+                new SurveyQuestion(2, "How satisfied were you with the time that your doctor spent with you?", 0, 0)
                 );
             });
 

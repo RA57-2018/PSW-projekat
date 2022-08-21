@@ -26,8 +26,10 @@ export class SurveyComponent implements OnInit {
         this.surveys.push(p);
       }     
     })
-    this.id = this.route.snapshot.paramMap.get('id');
-    this.ap = this.route.snapshot.paramMap.get('ap');
+    this.id = localStorage.getItem('Id');
+    this.ap = localStorage.getItem('idA');
+    //kako uzeti id appointmenta?
+    //this.ap = this.route.snapshot.paramMap.get('ap');//null je
   }
 
   onSubmit(){ 

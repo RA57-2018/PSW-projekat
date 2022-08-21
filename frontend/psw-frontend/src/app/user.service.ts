@@ -11,12 +11,8 @@ const url = 'http://localhost:5000';
 })
 export class UserService {
 
- //url: string;
-
   constructor(private http: HttpClient) 
-  { 
-    //this.url = "http://" + environment.apiUrl + ":" + environment.port;
-  }
+  { }
 
   public registration(body: any) : Observable<any>{ 
     return this.http.post(url + `/registration`, body);

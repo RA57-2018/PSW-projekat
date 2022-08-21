@@ -8,6 +8,7 @@ import { PatientHomePageComponent } from './pages/patient-home-page/patient-home
 import { RecommendAppointmentComponent } from './pages/recommend-appointment/recommend-appointment.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { SpecialistAppointmentComponent } from './pages/specialist-appointment/specialist-appointment.component';
+import { SurveyComponent } from './pages/survey/survey.component';
 
 const routes: Routes = [
   { path: '', pathMatch:'full', redirectTo:'landingPage'},
@@ -21,7 +22,9 @@ const routes: Routes = [
   { path: 'recommendedAppointment', component: RecommendAppointmentComponent},
   { path: 'observeAppointments/:token', component: AppointmentObserveComponent},
   { path: 'observeAppointments', component: AppointmentObserveComponent},
-  { path: 'specialistAppointment', component: SpecialistAppointmentComponent}
+  { path: 'specialistAppointment', component: SpecialistAppointmentComponent},
+  { path: 'survey', component: SurveyComponent},
+  { path: 'survey/:id/:ap', component: SurveyComponent},
 ];
 
 @NgModule({

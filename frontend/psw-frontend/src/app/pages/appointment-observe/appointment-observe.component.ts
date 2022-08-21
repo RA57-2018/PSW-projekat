@@ -24,8 +24,10 @@ export class AppointmentObserveComponent implements OnInit {
 
   constructor(private observeAppointemntsService: AppointmentObserveService, private router: Router, private _snackBar: MatSnackBar) { }
 
-  TakeSurvey($myParam: number = 0, $myParam1: number = 0): void {
+  TakeSurvey(idA: number, $myParam: number = 0, $myParam1: number = 0): void {
     const navigationDetails: string[] = ['/survey'];
+    this.appointmentId = idA;
+    localStorage.setItem('idA', this.appointmentId);
     if($myParam && $myParam1) {
       navigationDetails.push($myParam.toString());
       navigationDetails.push($myParam1.toString());

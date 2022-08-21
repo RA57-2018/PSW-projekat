@@ -46,7 +46,6 @@ namespace PswProject.controller
         public IActionResult Login(UserDTO userDTO)
         {
             User user = userService.FindByUsernameAndPassword(userDTO.Username, userDTO.Password);
-           // Doctor doctor = doctorService.FindDoctorsByUsernameAndPassword(userDTO.Username, userDTO.Password);
 
             foreach (User u in dbContext.Users)
             {
