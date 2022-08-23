@@ -55,8 +55,8 @@ namespace PswProject.repository
 
             List<CommentDTO> result = new List<CommentDTO>();
             foreach (Comment f in list)
-            {   //proveriti za datetime !!!
-                result.Add(new CommentDTO { Name = f.Name, Date = f.TimeWritten, Content = f.Content });
+            {  
+                result.Add(new CommentDTO { Name = f.Name, Date = f.TimeWritten, Content = f.Content, Rating = f.Rating });
             }
 
             return result;

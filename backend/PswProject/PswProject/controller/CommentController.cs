@@ -47,7 +47,7 @@ namespace PswProject.controller
 
         private Comment GenerateUserFeedbackFromDTO(CommentDTO comDTO)
         {
-            Comment comment = new Comment(comDTO.Date, comDTO.Content, comDTO.Name, false);
+            Comment comment = new Comment(comDTO.Date, comDTO.Content, comDTO.Name, false, comDTO.Rating);
 
             return comment;
         }

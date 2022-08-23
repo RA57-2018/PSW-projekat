@@ -67,9 +67,9 @@ namespace PswProject
             modelBuilder.Entity<Comment>(mb =>
             {
                 mb.HasData(
-                new Comment(1, DateTime.Now, "Good!", "Mika Mikic", false),
-                new Comment(2, DateTime.Now, "I didn't like it.", "Anonymus", true),
-                new Comment(3, DateTime.Now, "Super service!", "Sara Saric", true)
+                new Comment(1, DateTime.Now, "Good!", "Mika Mikic", false, 3),
+                new Comment(2, DateTime.Now, "I didn't like it.", "Anonymus", true, 5),
+                new Comment(3, DateTime.Now, "Super service!", "Sara Saric", true, 4)
                 );
             });
 

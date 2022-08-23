@@ -16,8 +16,9 @@ export class CommentComponent implements OnInit {
   public content: string = "";
   public comment: CommentDTO;
   public today: Date = new Date();
+  public rating : any;
 
-  constructor(private patientCommentService: CommentService,private _snackBar: MatSnackBar) {
+  constructor(private patientCommentService: CommentService, private _snackBar: MatSnackBar) {
     this.comments = [];
     this.comment = new CommentDTO()
   }
@@ -46,6 +47,7 @@ export class CommentComponent implements OnInit {
   PrepareDTO(){
     this.comment.Content = this.content;
     this.comment.Date = this.today;
+    this.comment.Rating = this.rating;
     if(this.anonymous == true){
     this.comment.Name = "anonymous";
     }

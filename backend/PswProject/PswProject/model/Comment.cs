@@ -9,24 +9,27 @@ namespace PswProject.model
         public String Content { get; set; }
         public String Name { get; set; }
         public Boolean canPublish { get; set; }
+        public int Rating { get; set; } 
 
         public Comment() { }
-        public Comment(int id, DateTime date, string context, string name, Boolean canPublish)
+        public Comment(int id, DateTime date, string context, string name, Boolean canPublish, int rating)
         {
             Id = id;
             TimeWritten = date;
             Name = name;
             Content = context;
             this.canPublish = canPublish;
+            Rating = rating;
             Validate();
         }
 
-        public Comment(DateTime time, string content, string name, bool v)
+        public Comment(DateTime time, string content, string name, bool v, int rating)
         {
             TimeWritten = time;
             Content = content;
             Name = name;
             canPublish = v;
+            Rating = rating;
             Validate();
         }
         private void Validate()
