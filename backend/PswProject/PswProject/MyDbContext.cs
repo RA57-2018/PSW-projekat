@@ -15,6 +15,7 @@ namespace PswProject
         public DbSet<Survey> Survey { get; set; }
         public DbSet<AnsweredQuestion> AnsweredQuestion { get; set; }
         public DbSet<SurveyQuestion> SurveyQuestion { get; set; }
+        public DbSet<Comment> Comments { get; set; }
         public MyDbContext(DbContextOptions<MyDbContext> options) : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -62,6 +63,16 @@ namespace PswProject
                 new SurveyQuestion(2, "How satisfied were you with the time that your doctor spent with you?", 0, 0)
                 );
             });
+
+            modelBuilder.Entity<Comment>(mb =>
+            {
+                mb.HasData(
+                new Comment(1, DateTime.Now, "Good!", "Mika Mikic", false),
+                new Comment(2, DateTime.Now, "I didn't like it.", "Anonymus", true),
+                new Comment(3, DateTime.Now, "Super service!", "Sara Saric", true)
+                );
+            });
+
 
         }
     }

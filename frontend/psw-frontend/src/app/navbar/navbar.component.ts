@@ -20,6 +20,7 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/login']);
     localStorage.setItem('jwtToken', this.token);
     localStorage.setItem('Role', this.token);
+    //localStorage.clear();
   }
 
 }

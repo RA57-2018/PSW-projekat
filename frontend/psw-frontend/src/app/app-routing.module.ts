@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminHomePageComponent } from './pages/admin-home-page/admin-home-page.component';
 import { AppointmentObserveComponent } from './pages/appointment-observe/appointment-observe.component';
+import { CommentComponent } from './pages/comment/comment.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { LoginComponent } from './pages/login/login.component';
 import { PatientHomePageComponent } from './pages/patient-home-page/patient-home-page.component';
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'specialistAppointment', component: SpecialistAppointmentComponent},
   { path: 'survey', component: SurveyComponent},
   { path: 'survey/:id/:ap', component: SurveyComponent},
+  { path: 'comments', component: CommentComponent, pathMatch: 'full'},
 ];
 
 @NgModule({

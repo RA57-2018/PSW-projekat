@@ -19,7 +19,6 @@ export class UserService {
   }
 
   public login(userDto: UserDto) : Observable<any>{ 
-    console.log(userDto)
     return this.http.post<any>(url + `/login`, userDto, { responseType: 'text' as 'json'});
   }
 
