@@ -25,10 +25,30 @@ namespace PswProject.repository
         }
         public bool SaveUserFeedback(Comment comment)
         {
-            comment.Id = GetAll().Count + 1;
-            dbContext.Comments.Add(comment);
-            dbContext.SaveChanges();
-            return true;
+            var com = dbContext.Comments.Where(u => u.Content.Equals(comment.Content)).FirstOrDefault();
+            if (dbContext.Comments.Find(com.Id) == null)
+            {
+                comment.Id = GetAll().Count + 1;
+                dbContext.Comments.Add(comment);
+                dbContext.SaveChanges();
+                return true;
+            }
+            else if (comment.canPublish == false)
+            {
+                com.canPublish = false;
+                dbContext.SaveChanges();
+                return true;
+            }
+            else
+            {
+                 com.canPublish = true;
+                //comment.Id = GetAll().Count + 1;
+                //dbContext.Comments.Add(comment);
+                //com.Id = GetAll().Count + 1;
+                dbContext.SaveChanges();
+                return true;
+            }
+            
         }
         public List<Comment> GetAll()
         {

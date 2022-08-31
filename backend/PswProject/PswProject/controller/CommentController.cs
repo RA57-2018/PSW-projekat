@@ -38,6 +38,15 @@ namespace PswProject.controller
         public IActionResult Get()
         {
             repoComment.dbContext = dbContext;
+            List<Comment> result = new List<Comment>();
+            result = repoComment.GetAll();
+            return Ok(result);
+        }
+
+        [HttpGet("/commentAp")]
+        public IActionResult GetAp()
+        {
+            repoComment.dbContext = dbContext;
             List<CommentDTO> result = new List<CommentDTO>();
             result = repoComment.GetAllAproved();
             return Ok(result);
@@ -47,7 +56,7 @@ namespace PswProject.controller
 
         private Comment GenerateUserFeedbackFromDTO(CommentDTO comDTO)
         {
-            Comment comment = new Comment(comDTO.Date, comDTO.Content, comDTO.Name, false, comDTO.Rating);
+            Comment comment = new Comment(comDTO.Date, comDTO.Content, comDTO.Name, comDTO.CanPublish, comDTO.Rating);
 
             return comment;
         }

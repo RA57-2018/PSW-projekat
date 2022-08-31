@@ -9,6 +9,8 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { NavbarComponent } from './navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
 
+
+import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule} from '@angular/material/card';
 import { MatInputModule} from '@angular/material/input';
@@ -30,6 +32,8 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { SpecialistAppointmentComponent } from './pages/specialist-appointment/specialist-appointment.component';
 import { SurveyComponent } from './pages/survey/survey.component';
 import { CommentComponent } from './pages/comment/comment.component';
+import { UserListComponent } from './pages/user-list/user-list.component';
+import { DoctorHomePageComponent } from './pages/doctor-home-page/doctor-home-page.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +49,8 @@ import { CommentComponent } from './pages/comment/comment.component';
     SpecialistAppointmentComponent,
     SurveyComponent,
     CommentComponent,
+    UserListComponent,
+    DoctorHomePageComponent,
   ],
     imports: [
     MatSnackBarModule,
@@ -64,7 +70,8 @@ import { CommentComponent } from './pages/comment/comment.component';
     MatIconModule,
     ReactiveFormsModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    MatFormFieldModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [],

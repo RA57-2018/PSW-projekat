@@ -9,6 +9,7 @@ namespace PswProject.service
 {
     public class ObserveAppointmentsService
     {
+        private MyDbContext dbContext { get; set; }
         private ObserveAppointmentsSqlRepository ObserveAppointmentsSqlRepository;
         private AppointmentRepository AppointmentRepository { get; set; }
         private Appointment Appointment = new Appointment();
@@ -29,15 +30,21 @@ namespace PswProject.service
             List<Appointment> appointments = ObserveAppointmentsSqlRepository.GetById(id);
 
             return Appointment.StatusAppointment(appointments);
-           // return appointments;
+        }
+        public List<Appointment> GetDoctorsAppointmentsById(int id)
+        {
+            List<Appointment> appointments = ObserveAppointmentsSqlRepository.GetDoctorsApById(id);
+
+            return Appointment.StatusAppointment(appointments);
         }
 
         //CancelAppointments
         public bool CancelAppointment(int appointmentId)
         {
             Appointment appointment = AppointmentRepository.GetByAppointmentId(appointmentId);
-            appointment.isCancelled = true;
-            appointment.canCancel = false;
+            ObserveAppointmentsSqlRepository.GetUserByApId(appointment);
+            //appointment.isCancelled = true;
+            //appointment.canCancel = false;
             bool retVal = AppointmentRepository.Update(appointment);
             return retVal;
         }

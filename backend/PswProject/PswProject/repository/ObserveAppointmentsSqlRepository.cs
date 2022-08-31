@@ -25,9 +25,14 @@ namespace PswProject.repository
             return context.Appointments.ToList();
         }
 
-        internal List<Appointment> GetById(int id)
+        public List<Appointment> GetById(int id)
         {   
             return context.Appointments.Where(s => s.UserId == id).ToList();
+        }
+        
+        public List<Appointment> GetDoctorsApById(int id)
+        {
+            return context.Appointments.Where(s => s.DoctorId == id).ToList();
         }
 
         public Appointment GetOne(int id)
@@ -60,6 +65,14 @@ namespace PswProject.repository
         public void Create(Appointment appointment)
         {
             throw new NotImplementedException();
+        }
+
+        public void GetUserByApId(Appointment appointment)
+        {
+            User u = context.Users.Where(f => f.Id == appointment.UserId).FirstOrDefault();
+            //u.NumOfC = u.NumOfC + 1;
+            Console.WriteLine(u.NumOfC);
+            context.SaveChanges();
         }
     }
 }
