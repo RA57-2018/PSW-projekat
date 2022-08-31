@@ -326,5 +326,11 @@ namespace PswProject.service
             return availableAppointments;
         }
 
+        public bool SendRecipe(RecipeDTO recipe) 
+        {
+            Console.WriteLine(recipe.IdR);
+            return true;
+        }
+
     }
 }

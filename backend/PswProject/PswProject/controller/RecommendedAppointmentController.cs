@@ -45,6 +45,15 @@ namespace PswProject.controller
             return Ok();
         }
 
+        [HttpPost("/sendRecipe")]
+        public IActionResult SendRecipe([FromBody] RecipeDTO recipe)
+        {
+            Console.WriteLine(recipe.Medicine);
+            Console.WriteLine(recipe.IdR);
+            appointmentService.SendRecipe(recipe);
+            return Ok();
+        }
+
 
     }
 }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { RecommendAppointmentDto } from 'src/app/pages/recommend-appointment/recommend-appointment-dto';
+import { RecipeDto } from './pages/give-recipe/recipe.dto';
 
 const url = 'http://localhost:5000';
 
@@ -20,10 +21,6 @@ export class RecommendAppointmentService {
 
   BlockUser(Id: number): Observable<any> {
     return this.http.post<any>(url + "/block", Id);
-  }
-
-  SendRecipe(Id: number): Observable<any> {
-    return this.http.post<any>(url + "/sendRecipe", Id);
   }
 
   GetAllSpecDoctors(): Observable<any> {
@@ -49,5 +46,16 @@ export class RecommendAppointmentService {
       PatientId: patientId
     }
     return this.http.post<any>(url + "/schedule", body);
+  }
+
+  SendRecipe(Id: number, medicine: string, quantity: string, instructions: string): Observable<any> {
+    const body = {
+      Id: Id,
+      Medicine: medicine,
+      Quantity: quantity,
+      Instructions: instructions
+    }
+    console.log(body);
+    return this.http.post<any>(url + "/sendRecipe", body);
   }
 }

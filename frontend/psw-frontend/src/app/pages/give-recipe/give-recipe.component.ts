@@ -11,10 +11,13 @@ import { RecipeDto } from './recipe.dto';
   styleUrls: ['./give-recipe.component.css']
 })
 export class GiveRecipeComponent implements OnInit {
-  recipeDto: RecipeDto = { Medicine: "", Quantity: "", Instructions: ""}
+  recipeDto: RecipeDto = { IdR: 0, Medicine: "", Quantity: "", Instructions: ""}
   recipeForm: FormGroup;
   public id: any = "";
-  public idR: any = "";
+  public idR: number = 0;
+  public medicine: string = "";
+  public quantity: string = "";
+  public instructions: string = "";
 
   constructor(private router: Router, private formBuilder: FormBuilder, private recommendAppointmentService: RecommendAppointmentService) { 
     this.recipeForm = formBuilder.group({
@@ -24,15 +27,20 @@ export class GiveRecipeComponent implements OnInit {
 
   ngOnInit(): void {
     this.recipeForm = this.formBuilder.group({
-      Medicine: ['', Validators.required],
-      Quantity: ['', Validators.required],
-      Instructions: ['', Validators.required]
+      medicine: ['', Validators.required],
+      quantity: ['', Validators.required],
+      instructions: ['', Validators.required]
     });
   }
 
   Send(){
     console.log(this.idR);
-    this.recommendAppointmentService.SendRecipe(this.idR).subscribe((data: any) =>{
+    this.recipeDto.IdR = this.idR;
+    this.recipeDto.Medicine = this.recipeForm.value.medicine;
+    this.recipeDto.Quantity = this.recipeForm.value.quantity;
+    this.recipeDto.Instructions = this.recipeForm.value.instructions;
+    console.log(this.recipeDto);
+    this.recommendAppointmentService.SendRecipe(this.recipeDto.IdR, this.recipeDto.Medicine, this.recipeDto.Quantity, this.recipeDto.Instructions).subscribe((data: any) =>{
       //this.ngOnInit();
       alert("Recipe is sent!");
     });  
