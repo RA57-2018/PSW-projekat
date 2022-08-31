@@ -70,8 +70,7 @@ namespace PswProject.repository
         public void GetUserByApId(Appointment appointment)
         {
             User u = context.Users.Where(f => f.Id == appointment.UserId).FirstOrDefault();
-            //u.NumOfC = u.NumOfC + 1;
-            Console.WriteLine(u.NumOfC);
+            u.NumOfC = u.NumOfC + 1;
             context.SaveChanges();
         }
     }

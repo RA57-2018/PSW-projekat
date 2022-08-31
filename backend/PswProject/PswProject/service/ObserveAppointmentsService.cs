@@ -38,13 +38,12 @@ namespace PswProject.service
             return Appointment.StatusAppointment(appointments);
         }
 
-        //CancelAppointments
         public bool CancelAppointment(int appointmentId)
         {
             Appointment appointment = AppointmentRepository.GetByAppointmentId(appointmentId);
             ObserveAppointmentsSqlRepository.GetUserByApId(appointment);
-            //appointment.isCancelled = true;
-            //appointment.canCancel = false;
+            appointment.isCancelled = true;
+            appointment.canCancel = false;
             bool retVal = AppointmentRepository.Update(appointment);
             return retVal;
         }

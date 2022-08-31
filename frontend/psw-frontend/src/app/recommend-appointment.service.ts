@@ -22,6 +22,10 @@ export class RecommendAppointmentService {
     return this.http.post<any>(url + "/block", Id);
   }
 
+  SendRecipe(Id: number): Observable<any> {
+    return this.http.post<any>(url + "/sendRecipe", Id);
+  }
+
   GetAllSpecDoctors(): Observable<any> {
       return this.http.get<any>(url + '/findDoctors');
   }

@@ -27,6 +27,7 @@ namespace PswProject.model
         public Boolean isCancelled { get;  set; }
         public Boolean canCancel { get;  set; }
         public Boolean IsDeleted { get;  set; }
+        public int RecipeId { get; set; }
 
         public Appointment() { }
 
