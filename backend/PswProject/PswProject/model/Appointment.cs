@@ -93,9 +93,13 @@ namespace PswProject.model
                     a.Status = AppointmentStatus.CANCELLED;
                 else if (a.StartTime < DateTime.Now)
                     a.Status = AppointmentStatus.DONE;
-                else if (a.StartTime > DateTime.Now)
+                else if (a.StartTime > DateTime.Now && a.Status == AppointmentStatus.UPCOMING)
+                {
                     a.Status = AppointmentStatus.UPCOMING;
-
+                }
+                else
+                    a.Status = AppointmentStatus.DONE;
+ 
                 if (a.StartTime.Day < DateTime.Now.Day + 3)
                     a.canCancel = false;
             }

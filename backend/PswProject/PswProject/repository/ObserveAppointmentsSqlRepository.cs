@@ -1,4 +1,5 @@
-﻿using PswProject.model;
+﻿using PswProject.dto;
+using PswProject.model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,18 @@ namespace PswProject.repository
 
         public Appointment GetOne(int id)
         {
-            throw new NotImplementedException();
+            Appointment a = context.Appointments.Where(f => f.IdA == id).FirstOrDefault();
+            a.Status = AppointmentStatus.DONE;
+            a.RecipeId = id;
+            context.SaveChanges();
+            return a;
+        }
+
+        public void AddRecipeToDB(Recipe r)
+        {
+            Recipe newR = new Recipe(r.IdR, r.Medicine, r.Quantity, r.Instructions);
+            context.Recipes.Add(newR);
+            context.SaveChanges();
         }
 
         public bool Save(Appointment newObject)

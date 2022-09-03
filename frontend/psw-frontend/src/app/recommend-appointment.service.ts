@@ -48,14 +48,14 @@ export class RecommendAppointmentService {
     return this.http.post<any>(url + "/schedule", body);
   }
 
-  SendRecipe(Id: number, medicine: string, quantity: string, instructions: string): Observable<any> {
+  SendRecipe(idR: number, medicine: string, quantity: string, instructions: string): Observable<any> {
     const body = {
-      Id: Id,
+      IdR: idR,
       Medicine: medicine,
       Quantity: quantity,
       Instructions: instructions
     }
-    console.log(body);
+    console.log(idR);
     return this.http.post<any>(url + "/sendRecipe", body);
   }
 }

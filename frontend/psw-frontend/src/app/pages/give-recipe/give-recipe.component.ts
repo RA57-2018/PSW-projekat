@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { RecommendAppointmentService } from 'src/app/recommend-appointment.service';
 import { DoctorHomePageComponent } from '../doctor-home-page/doctor-home-page.component';
@@ -19,7 +20,7 @@ export class GiveRecipeComponent implements OnInit {
   public quantity: string = "";
   public instructions: string = "";
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private recommendAppointmentService: RecommendAppointmentService) { 
+  constructor(private router: Router, private formBuilder: FormBuilder, private recommendAppointmentService: RecommendAppointmentService, private dialogRef: MatDialogRef<GiveRecipeComponent>) { 
     this.recipeForm = formBuilder.group({
       title: formBuilder.control('initial value', Validators.required)
     });
@@ -41,9 +42,11 @@ export class GiveRecipeComponent implements OnInit {
     this.recipeDto.Instructions = this.recipeForm.value.instructions;
     console.log(this.recipeDto);
     this.recommendAppointmentService.SendRecipe(this.recipeDto.IdR, this.recipeDto.Medicine, this.recipeDto.Quantity, this.recipeDto.Instructions).subscribe((data: any) =>{
-      //this.ngOnInit();
+
       alert("Recipe is sent!");
     });  
+    this.dialogRef.close([]);
+    window.location.reload();
   }
 
 }

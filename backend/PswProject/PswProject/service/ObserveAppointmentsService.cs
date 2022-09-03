@@ -1,4 +1,5 @@
-﻿using PswProject.model;
+﻿using PswProject.dto;
+using PswProject.model;
 using PswProject.repository;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace PswProject.service
         public List<Appointment> GetAppointmentsById(int id)
         {
             List<Appointment> appointments = ObserveAppointmentsSqlRepository.GetById(id);
-
+            //return appointments;
             return Appointment.StatusAppointment(appointments);
         }
         public List<Appointment> GetDoctorsAppointmentsById(int id)
@@ -44,7 +45,16 @@ namespace PswProject.service
             ObserveAppointmentsSqlRepository.GetUserByApId(appointment);
             appointment.isCancelled = true;
             appointment.canCancel = false;
+            appointment.Status = AppointmentStatus.CANCELLED;
             bool retVal = AppointmentRepository.Update(appointment);
+            return retVal;
+        }
+
+        public bool SendRecipe(Recipe recipe)
+        {
+            Appointment a = ObserveAppointmentsSqlRepository.GetOne(recipe.IdR);
+            bool retVal = ObserveAppointmentsSqlRepository.Update(a);
+            ObserveAppointmentsSqlRepository.AddRecipeToDB(recipe);
             return retVal;
         }
     }

@@ -21,6 +21,8 @@ export class DoctorHomePageComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router: Router, public matDialog: MatDialog, private _snackBar: MatSnackBar, private observeAppointemntsService: AppointmentObserveService) { }
 
+
+
   ngOnInit(): void {
     this.id = localStorage.getItem('Id');
     console.log(this.id);
@@ -38,6 +40,8 @@ export class DoctorHomePageComponent implements OnInit {
     dialogConfig.width = '500px';
     let dialogRef = this.matDialog.open(GiveRecipeComponent, dialogConfig);
     dialogRef.componentInstance.idR = this.appointmentId;
+    this.ngOnInit();
+    
   }
 
 }

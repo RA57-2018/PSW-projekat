@@ -18,11 +18,13 @@ namespace PswProject.controller
     {
         private readonly MyDbContext context;
         public AppointmentService appointmentService;
+        public ObserveAppointmentsService oas;
 
         public RecommendedAppointmentController(MyDbContext context)
         {
             this.context = context;
             appointmentService = new AppointmentService(new RecommendedAppointmentSqlRepository(context), new DoctorSqlRepository(context));
+            oas = new ObserveAppointmentsService(new ObserveAppointmentsSqlRepository(context));
         }
 
 
@@ -46,11 +48,11 @@ namespace PswProject.controller
         }
 
         [HttpPost("/sendRecipe")]
-        public IActionResult SendRecipe([FromBody] RecipeDTO recipe)
+        public IActionResult SendRecipe(RecipeDTO recipe)
         {
-            Console.WriteLine(recipe.Medicine);
             Console.WriteLine(recipe.IdR);
-            appointmentService.SendRecipe(recipe);
+            Recipe r = new Recipe(recipe.IdR, recipe.Medicine, recipe.Quantity, recipe.Instructions);
+            oas.SendRecipe(r);
             return Ok();
         }
 

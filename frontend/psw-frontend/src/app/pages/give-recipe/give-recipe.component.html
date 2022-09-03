@@ -3,6 +3,7 @@
       <mat-card-header>
         <mat-card-title>Give recipe</mat-card-title>
       </mat-card-header>
+      <div mat-dialog-content>
       <form [formGroup]="recipeForm" class="example-form">
         <div class="example-container">
           <!--<table id="tableA" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -31,5 +32,6 @@
 
         <button id="send" mat-stroked-button color="accent" class="btn-block" (click)="Send()">Send</button>
       </form>
+    </div>
     </mat-card>
   </div>
