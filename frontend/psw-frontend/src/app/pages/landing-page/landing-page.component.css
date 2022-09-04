@@ -26,7 +26,11 @@
     margin-right: 5%;
     margin-top: 6%;
     border-style: groove;
-    border-color: #eb5fb3;
+    border-color: #f4aad7;
+}
+
+.example-card{
+    background-color: #dfa5c8;
 }
 
 .box{

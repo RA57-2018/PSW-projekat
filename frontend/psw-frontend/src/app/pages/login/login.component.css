@@ -40,6 +40,7 @@ body {
   -ms-transform: scale(1);
   z-index: 5;
   max-width: 330px;
+  border: 1px solid rgb(181, 87, 171);
 }
 
 .login-wrapper .example-form {
@@ -48,7 +49,7 @@ body {
   width: 100%;
 }
 .login-wrapper .example-full-width,
-.login-wrapper .btn-block {
+.login-wrapper .btn-block{
   width: 100%;
 }
 .login-wrapper mat-card-header {

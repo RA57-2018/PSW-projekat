@@ -8,6 +8,14 @@
     color: black;
 }
 
+.button{
+    background-color: rgb(181, 87, 171);
+    border: 0px solid rgb(181, 87, 171);
+    box-shadow: none;
+    font-size: 20px;
+
+}
+
 .mat-button{
      color: black;
 }
@@ -17,5 +25,5 @@
 }
 
 a {
-    font-size: medium;
+    font-size: 20px;
 }
