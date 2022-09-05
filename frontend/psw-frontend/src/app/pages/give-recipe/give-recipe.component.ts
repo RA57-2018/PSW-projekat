@@ -35,12 +35,10 @@ export class GiveRecipeComponent implements OnInit {
   }
 
   Send(){
-    console.log(this.idR);
     this.recipeDto.IdR = this.idR;
     this.recipeDto.Medicine = this.recipeForm.value.medicine;
     this.recipeDto.Quantity = this.recipeForm.value.quantity;
     this.recipeDto.Instructions = this.recipeForm.value.instructions;
-    console.log(this.recipeDto);
     this.recommendAppointmentService.SendRecipe(this.recipeDto.IdR, this.recipeDto.Medicine, this.recipeDto.Quantity, this.recipeDto.Instructions).subscribe((data: any) =>{
 
       alert("Recipe is sent!");

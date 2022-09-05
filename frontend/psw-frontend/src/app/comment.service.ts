@@ -14,10 +14,6 @@ export class CommentService {
   constructor (private http: HttpClient) {}
 
     GetAprovedComments(): Observable<any> {
-      // const token = localStorage.getItem('jwtToken');
-      // let headers = new Headers();
-      // headers.append('Authorization', 'Bearer ' + token);
-      //axios.get(url+"/comments").then((resp)=>{console.log(resp)})
       return this.http.get<any>(url + '/comments');
   }
     SendComment(comment: CommentDTO):Observable<any> {

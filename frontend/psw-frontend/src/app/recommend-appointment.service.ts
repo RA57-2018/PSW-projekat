@@ -55,7 +55,6 @@ export class RecommendAppointmentService {
       Quantity: quantity,
       Instructions: instructions
     }
-    console.log(idR);
     return this.http.post<any>(url + "/sendRecipe", body);
   }
 }

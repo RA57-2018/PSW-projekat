@@ -39,13 +39,13 @@ export class AdminHomePageComponent implements OnInit {
     this.comment.Rating = stagoddd;
     this.disabled = !this.disabled;
      this.patientCommentService.SendComment(this.comment).subscribe((data: any)=>{
-      alert("Comment approved");
+      alert("Comment approved!");
     })
     window.location.reload();
   }
 
   Remove(stagod: any, stagodd: any, stagoddd: any){
-    alert("Maknuto");
+    alert("Comment removed!");
     this.comment.Name = stagod;
     this.comment.Content = stagodd;
     this.comment.Rating = stagoddd;

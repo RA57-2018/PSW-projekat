@@ -50,9 +50,8 @@ export class AppointmentObserveComponent implements OnInit {
     this.appointmentId = element.idA;
     this.observeAppointemntsService.TakeRecipe(this.appointmentId).subscribe((data: any)=>{
       this.dataSource = data;   
-
     });
-    this.ngOnInit();
+    alert("You took recipe!");
     window.location.reload();
   }
 

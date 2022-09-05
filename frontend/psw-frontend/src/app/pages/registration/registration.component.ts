@@ -71,13 +71,11 @@ export class RegistrationComponent implements OnInit {
     this.register.Jmbg = this.validateForm.value.jmbg;
     this.register.Address = this.validateForm.value.address;
     this.register.Gender = this.selectedValueGender;
-    console.log(this.register.Gender)
       if(this.validateForm.valid){
         this.userService.registration(this.register).subscribe(data => { 
             alert("Registration successfull");
             this.router.navigate(['login']);
         }, error => {
-          console.log(error.status);
           if(error.status == 409){
             alert("Username already exists");
           }

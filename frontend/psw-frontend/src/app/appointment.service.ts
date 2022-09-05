@@ -18,7 +18,6 @@ export class AppointmentObserveService {
   constructor(private http: HttpClient) {}
   
   GetAppointments(id: number): Observable<any> {
-    console.log(id);
     return this.http.get<any>(url + "/observeAppointments/",{params:{id: id}});
   }
 
@@ -39,7 +38,6 @@ export class AppointmentObserveService {
       Medicine: medicine,
       Quantity: quantity,
     }
-    console.log(body);
     return this.http.post<any>(urlA + "/replenish", body);
   }
 

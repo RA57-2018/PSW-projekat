@@ -32,9 +32,7 @@ export class SurveyComponent implements OnInit {
 
   onSubmit(){ 
     this.surveyService.PostSurveyQuestions(this.surveys, this.id, this.ap).subscribe((data: any) =>{
-      this._snackBar.open('Survey sent!', '', {
-        duration: 2000
-      });
+      alert("Survey sent!");
     });
   }
 

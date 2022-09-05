@@ -19,7 +19,6 @@ export class LandingPageComponent implements OnInit {
     this.patientCommentService.GetAp().subscribe((data: any)=>{
       for(const p of (data as any)){
         this.comments.push(p);
-        console.log(data);
       }
     })
   }

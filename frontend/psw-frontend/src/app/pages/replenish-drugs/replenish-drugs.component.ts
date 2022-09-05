@@ -45,7 +45,6 @@ export class ReplenishDrugsComponent implements OnInit {
   Send(){
     this.drugDto.Medicine = this.recipeForm.value.medicine;
     this.drugDto.Quantity = this.recipeForm.value.quantity;
-    console.log(this.drugDto);
     this.aos.Replenish(this.drugDto.Medicine, this.drugDto.Quantity).subscribe(data => {
       alert("Medicine ordered!");
     });

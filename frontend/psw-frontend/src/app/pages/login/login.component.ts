@@ -41,8 +41,6 @@ export class LoginComponent implements OnInit {
       if(localStorage.getItem('Password') !== this.userDto.Password){
         alert("Pogresna lozinka!");
       }
-      console.log(tokenInfo.Role);
-      console.log(data);
       if(localStorage.getItem('Role') === 'PATIENT'){
         this.router.navigate(['/observeAppointments']);
       }else if(localStorage.getItem('Role') === 'DOCTOR'){

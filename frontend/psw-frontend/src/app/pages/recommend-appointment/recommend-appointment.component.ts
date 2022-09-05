@@ -65,13 +65,11 @@ export class RecommendAppointmentComponent implements OnInit {
     });
 
     this.recommendAppointmentService.GetAllGeneralDoctors().subscribe((data: any)=>{
-      console.log(data);
       for(const p of (data as any)){
         this.doctors.push(p);      
       }
     })
   }
-//if u 80 redu izbaciti i naterati ga da kada je prioritet na vremenu prikaye sve termine svih doktora
   onSubmit(){
     this.PrepareDTO();
      for(const d of this.doctors){

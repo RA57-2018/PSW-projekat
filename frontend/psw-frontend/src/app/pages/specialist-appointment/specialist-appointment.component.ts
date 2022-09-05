@@ -127,26 +127,7 @@ export class SpecialistAppointmentComponent implements OnInit {
   @ViewChild('content')
   content!: ElementRef;  
 
-  // public SavePDF(): void {  
-  //   let content=this.content.nativeElement;  
-  //   let doc = new jsPDF();  
-  //   let _elementHandlers =  
-  //   {  
-  //     '#editor':function({element, renderer}: any){  
-  //       return true;  
-  //     }  
-  //   };  
-  //   doc.html(data, {
-  //     callback: (doc) => {
-  //       doc.output("dataurlnewwindow");
-  //     }
-  //  });  
-  
-  //   doc.save('test.pdf');  
-  // }
-
   schedule(element: { start: Date; doctorFullName: string; }) {
-    console.log(element);
     this.start = element.start;
     this.doctorName = element.doctorFullName;
     this.id = this.patientId;
@@ -155,7 +136,6 @@ export class SpecialistAppointmentComponent implements OnInit {
         this.doctorId = d.idD;
       }
     }
-    //this.SavePDF();
     this.recommendAppointmentService.Schedule(this.start, this.doctorId, this.id).subscribe(data => {
       alert("Zauzeli ste termin u " + this.start);
      this.router.navigate(['/observeAppointments/' + this.id]);
