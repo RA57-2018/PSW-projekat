@@ -21,7 +21,6 @@ namespace Integration.Service
             int kolicinaUBazi = int.Parse(d.Quantity);
             int kolicinaSaRecepta = int.Parse(r.Quantity);
             int novaKolicina = kolicinaUBazi - kolicinaSaRecepta;
-            Console.WriteLine(novaKolicina);
             if(novaKolicina <= 0)
             {
                 return false;

@@ -26,14 +26,12 @@ namespace Integration.Controller
         public IActionResult TakeRecipe([FromBody] int id)
         {
             Recipe rr = ps.GetRecipes(id);
-            //Recipe r = new Recipe(recipe.IdR, recipe.Medicine, recipe.Quantity, recipe.Instructions);
             if (ps.CheckRecipe(rr) == true)
             {
                 return Ok();
             }
             else
             {
-                Console.WriteLine("nije bad request");
                 return BadRequest();
             }
         }
